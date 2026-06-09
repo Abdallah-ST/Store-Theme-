@@ -1,0 +1,134 @@
+{%- style -%}
+  .newsletter {
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #1F1F1F 0%, #2a2a2a 100%);
+    max-width: 1440px;
+    margin: 0 auto;
+    color: #FFFFFF;
+  }
+
+  .newsletter__container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .newsletter__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter__subtitle {
+    color: #ccc;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .newsletter__form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter__input {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+  }
+
+  .newsletter__button {
+    padding: 1rem 2rem;
+    background-color: #D4AF37;
+    color: #1F1F1F;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .newsletter__button:hover {
+    opacity: 0.9;
+  }
+
+  .newsletter__privacy {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    .newsletter {
+      padding: 2rem 1.5rem;
+    }
+
+    .newsletter__title {
+      font-size: 1.75rem;
+    }
+
+    .newsletter__form {
+      flex-direction: column;
+    }
+
+    .newsletter__button {
+      width: 100%;
+    }
+  }
+{%- endstyle -%}
+
+<section class="newsletter">
+  <div class="newsletter__container">
+    <h2 class="newsletter__title">{{ section.settings.title }}</h2>
+    <p class="newsletter__subtitle">{{ section.settings.description }}</p>
+    
+    <form class="newsletter__form" action="/contact" method="post">
+      <input 
+        type="email" 
+        name="contact[email]" 
+        class="newsletter__input"
+        placeholder="Enter your email" 
+        required
+      >
+      <button type="submit" class="newsletter__button">{{ section.settings.button_text }}</button>
+    </form>
+    
+    <p class="newsletter__privacy">
+      We respect your privacy. Unsubscribe at any time.
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Subscribe to Our Newsletter"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Get exclusive offers, pet care tips, and product updates delivered to your inbox."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}
