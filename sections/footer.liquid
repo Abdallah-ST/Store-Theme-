@@ -1,0 +1,119 @@
+{%- style -%}
+  .footer {
+    background-color: #1F1F1F;
+    color: #FFFFFF;
+    margin-top: 6rem;
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .footer__content {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer__section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #D4AF37;
+  }
+
+  .footer__section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__section li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__section a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer__section a:hover {
+    color: #D4AF37;
+  }
+
+  .footer__newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer__newsletter input {
+    padding: 0.75rem;
+    border: 1px solid #666;
+    background-color: transparent;
+    color: #FFFFFF;
+  }
+
+  .footer__newsletter input::placeholder {
+    color: #999;
+  }
+
+  .footer__newsletter button {
+    background-color: #D4AF37;
+    color: #1F1F1F;
+    border: none;
+    padding: 0.75rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer__newsletter button:hover {
+    opacity: 0.9;
+  }
+
+  .footer__socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .footer__socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #FFFFFF;
+    transition: background-color 0.3s ease;
+  }
+
+  .footer__socials a:hover {
+    background-color: #D4AF37;
+    color: #1F1F1F;
+  }
+
+  .footer__bottom {
+    border-top: 1px solid #444;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  .footer__payments {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 767px) {\n    .footer {\n      padding: 2rem 1.5rem;\n    }\n\n    .footer__content {\n      gap: 2rem;\n      margin-bottom: 2rem;\n    }\n  }\n{%- endstyle -%}\n\n<footer class=\"footer\">\n  <div class=\"footer__content\">\n    <div class=\"footer__section\">\n      <h3>Shop</h3>\n      <ul>\n        <li><a href=\"/collections/dog-clothing\">Dog Clothing</a></li>\n        <li><a href=\"/collections/cat-clothing\">Cat Clothing</a></li>\n        <li><a href=\"/collections/toys\">Toys</a></li>\n        <li><a href=\"/collections/accessories\">Accessories</a></li>\n      </ul>\n    </div>\n\n    <div class=\"footer__section\">\n      <h3>Customer Service</h3>\n      <ul>\n        <li><a href=\"/pages/contact\">Contact</a></li>\n        <li><a href=\"/pages/shipping\">Shipping</a></li>\n        <li><a href=\"/pages/faq\">FAQ</a></li>\n        <li><a href=\"/account\">My Account</a></li>\n      </ul>\n    </div>\n\n    <div class=\"footer__section\">\n      <h3>Policies</h3>\n      <ul>\n        <li><a href=\"/policies/privacy-policy\">Privacy Policy</a></li>\n        <li><a href=\"/policies/terms-of-service\">Terms & Conditions</a></li>\n        <li><a href=\"/policies/refund-policy\">Refund Policy</a></li>\n        <li><a href=\"/pages/cookie-policy\">Cookie Policy</a></li>\n      </ul>\n    </div>\n\n    <div class=\"footer__section\">\n      <h3>Newsletter</h3>\n      <form class=\"footer__newsletter\" action=\"/contact\" method=\"post\">\n        <input type=\"email\" name=\"contact[email]\" placeholder=\"Your email\" required>\n        <button type=\"submit\">Subscribe</button>\n      </form>\n      <div class=\"footer__socials\">\n        {% if settings.social_facebook %}\n          <a href=\"{{ settings.social_facebook }}\" title=\"Facebook\" target=\"_blank\" rel=\"noopener\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z\"/></svg>\n          </a>\n        {% endif %}\n        {% if settings.social_instagram %}\n          <a href=\"{{ settings.social_instagram }}\" title=\"Instagram\" target=\"_blank\" rel=\"noopener\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.163c2.503 0 2.797.009 3.778.058 1.254.057 1.93.26 2.382.434.6.233 1.023.507 1.47.953.446.447.72.87.953 1.47.174.452.377 1.128.434 2.382.049.981.058 1.275.058 3.778s-.009 2.797-.058 3.778c-.057 1.254-.26 1.93-.434 2.382-.233.6-.507 1.023-.953 1.47-.447.446-.87.72-1.47.953-.452.174-1.128.377-2.382.434-.981.049-1.275.058-3.778.058s-2.797-.009-3.778-.058c-1.254-.057-1.93-.26-2.382-.434-.6-.233-1.023-.507-1.47-.953-.446-.447-.72-.87-.953-1.47-.174-.452-.377-1.128-.434-2.382-.049-.981-.058-1.275-.058-3.778s.009-2.797.058-3.778c.057-1.254.26-1.93.434-2.382.233-.6.507-1.023.953-1.47.447-.446.87-.72 1.47-.953.452-.174 1.128-.377 2.382-.434.981-.049 1.275-.058 3.778-.058z\"/></svg>\n          </a>\n        {% endif %}\n        {% if settings.social_pinterest %}\n          <a href=\"{{ settings.social_pinterest }}\" title=\"Pinterest\" target=\"_blank\" rel=\"noopener\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 19.417c-1.668 0-3.177-.639-4.288-1.658.595-.074 1.19-.296 1.691-.649.501.353 1.096.575 1.737.575 1.835 0 3.322-1.487 3.322-3.322 0-1.19-.628-2.227-1.566-2.793.313-.502.502-1.085.502-1.714 0-1.835-1.487-3.322-3.322-3.322-1.56 0-2.863.988-3.322 2.397h-.001V7.17h-2.03v9.247c0 1.835 1.487 3.322 3.322 3.322z\"/></svg>\n          </a>\n        {% endif %}\n      </div>\n    </div>\n  </div>\n\n  <div class=\"footer__bottom\">\n    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>\n    <div class=\"footer__payments\">\n      {% for method in shop.enabled_payment_gateway_names %}\n        <span>{{ method }}</span>\n      {% endfor %}\n    </div>\n  </div>\n</footer>
