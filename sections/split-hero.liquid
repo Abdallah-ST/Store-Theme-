@@ -1,0 +1,69 @@
+{%- style -%}
+  .split-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 500px;
+    gap: 0;
+    margin: 4rem 0;
+  }
+
+  .split-hero__item {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .split-hero__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .split-hero__item:hover .split-hero__image {
+    transform: scale(1.05);
+  }
+
+  .split-hero__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .split-hero__content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
+  .split-hero__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .split-hero__cta {
+    display: inline-block;
+    background-color: #D4AF37;
+    color: #1F1F1F;
+    padding: 0.75rem 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #D4AF37;
+  }
+
+  .split-hero__cta:hover {
+    background-color: transparent;
+    color: #D4AF37;
+  }
+
+  @media (max-width: 767px) {\n    .split-hero {\n      grid-template-columns: 1fr;\n      height: 400px;\n      margin: 2rem 0;\n    }\n\n    .split-hero__title {\n      font-size: 1.5rem;\n    }\n  }\n{%- endstyle -%}\n\n<div class=\"split-hero\">\n  <div class=\"split-hero__item\">\n    {% if section.settings.image_left %}\n      <img src=\"{{ section.settings.image_left | image_url: width: 960 }}\" alt=\"{{ section.settings.title_left }}\" class=\"split-hero__image\" loading=\"lazy\">\n    {% endif %}\n    <div class=\"split-hero__overlay\"></div>\n    <div class=\"split-hero__content\">\n      <h2 class=\"split-hero__title\">{{ section.settings.title_left }}</h2>\n      <a href=\"{{ section.settings.url_left }}\" class=\"split-hero__cta\">{{ section.settings.cta_left }}</a>\n    </div>\n  </div>\n\n  <div class=\"split-hero__item\">\n    {% if section.settings.image_right %}\n      <img src=\"{{ section.settings.image_right | image_url: width: 960 }}\" alt=\"{{ section.settings.title_right }}\" class=\"split-hero__image\" loading=\"lazy\">\n    {% endif %}\n    <div class=\"split-hero__overlay\"></div>\n    <div class=\"split-hero__content\">\n      <h2 class=\"split-hero__title\">{{ section.settings.title_right }}</h2>\n      <a href=\"{{ section.settings.url_right }}\" class=\"split-hero__cta\">{{ section.settings.cta_right }}</a>\n    </div>\n  </div>\n</div>\n\n{% schema %}\n{\n  \"name\": \"Split Hero\",\n  \"settings\": [\n    {\n      \"type\": \"image_picker\",\n      \"id\": \"image_left\",\n      \"label\": \"Left Image\"\n    },\n    {\n      \"type\": \"text\",\n      \"id\": \"title_left\",\n      \"label\": \"Left Title\",\n      \"default\": \"Shop Dogs\"\n    },\n    {\n      \"type\": \"text\",\n      \"id\": \"cta_left\",\n      \"label\": \"Left CTA\",\n      \"default\": \"Discover\"\n    },\n    {\n      \"type\": \"url\",\n      \"id\": \"url_left\",\n      \"label\": \"Left URL\"\n    },\n    {\n      \"type\": \"image_picker\",\n      \"id\": \"image_right\",\n      \"label\": \"Right Image\"\n    },\n    {\n      \"type\": \"text\",\n      \"id\": \"title_right\",\n      \"label\": \"Right Title\",\n      \"default\": \"Shop Cats\"\n    },\n    {\n      \"type\": \"text\",\n      \"id\": \"cta_right\",\n      \"label\": \"Right CTA\",\n      \"default\": \"Discover\"\n    },\n    {\n      \"type\": \"url\",\n      \"id\": \"url_right\",\n      \"label\": \"Right URL\"\n    }\n  ],\n  \"presets\": [\n    {\n      \"name\": \"Split Hero\"\n    }\n  ]\n}\n{% endschema %}
