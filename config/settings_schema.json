@@ -1,0 +1,128 @@
+[
+  {
+    "name": "theme_info",
+    "theme": {
+      "name": "PetteLuxe",
+      "id": 123456789
+    }
+  },
+  {
+    "name": "Brand Settings",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_mobile",
+        "label": "Logo Mobile"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone",
+        "label": "Contact Phone",
+        "default": "+49 123 456789"
+      },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Contact Email",
+        "default": "contact@petteluxe.de"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL",
+        "placeholder": "https://facebook.com/..."
+      },
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL",
+        "placeholder": "https://instagram.com/..."
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest",
+        "label": "Pinterest URL",
+        "placeholder": "https://pinterest.com/..."
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL",
+        "placeholder": "https://tiktok.com/..."
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background Color",
+        "default": "#FAF8F4"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_text",
+        "label": "Primary Text Color",
+        "default": "#1F1F1F"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_gold",
+        "label": "Accent Gold Color",
+        "default": "#D4AF37"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary_beige",
+        "label": "Secondary Beige Color",
+        "default": "#EAE3D5"
+      },
+      {
+        "type": "color",
+        "id": "color_white",
+        "label": "White Color",
+        "default": "#FFFFFF"
+      }
+    ]
+  },
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "newsletter_heading",
+        "label": "Newsletter Heading",
+        "default": "Join Our Newsletter"
+      },
+      {
+        "type": "textarea",
+        "id": "newsletter_description",
+        "label": "Newsletter Description",
+        "default": "Get exclusive offers and pet care tips delivered to your inbox."
+      }
+    ]
+  },
+  {
+    "name": "Shipping & Policies",
+    "settings": [
+      {
+        "type": "text",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold (EUR)",
+        "default": "50"
+      }
+    ]
+  }
+]
