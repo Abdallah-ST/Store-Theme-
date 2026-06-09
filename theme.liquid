@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#D4AF37">
+    <meta name="description" content="{{ page_description | escape }}">
+    
+    <title>{% if page_title %}{{ page_title }} | {% endif %}{{ shop.name }}</title>
+    
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    {{ content_for_header }}
+    
+    <link rel="stylesheet" href="{{ 'style.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'fonts.css' | asset_url }}">
+    
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    
+    {% if template.name == 'product' %}
+      <script src="{{ 'product-gallery.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+    
+    {% if template.name == 'collection' or template.name == 'index' %}
+      <script src="{{ 'search.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "{{ shop.name }}",
+        "url": "{{ shop.url }}",
+        "logo": "{{ shop.brand.logo.image.src | image_url: width: 250 }}",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Customer Service",
+          "availableLanguage": ["en", "de"]
+        }
+      }
+    </script>
+  </head>
+
+  <body class="template-{{ template.name }}">
+    {% section 'header' %}
+    
+    <main id="MainContent" class="content-wrapper">
+      {{ content_for_layout }}
+    </main>
+    
+    {% section 'footer' %}
+    
+    {% snippet 'cart-drawer' %}
+    
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+  </body>
+</html>
