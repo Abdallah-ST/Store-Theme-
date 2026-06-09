@@ -1,0 +1,205 @@
+{%- style -%}
+  .faq {
+    padding: 4rem 1.5rem;
+    background-color: #FFFFFF;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .faq__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1F1F1F;
+  }
+
+  .faq__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #EAE3D5;
+    padding: 1.5rem 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-item__question {
+    font-weight: 600;
+    color: #1F1F1F;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+
+  .faq-item__question:hover {
+    color: #D4AF37;
+  }
+
+  .faq-item__toggle {
+    font-size: 1.5rem;
+    color: #D4AF37;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item__toggle.open {
+    transform: rotate(180deg);
+  }
+
+  .faq-item__answer {
+    color: #666;
+    line-height: 1.6;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .faq-item__answer.open {
+    max-height: 500px;
+  }
+
+  @media (max-width: 767px) {
+    .faq {
+      padding: 2rem 1.5rem;
+    }
+
+    .faq__title {
+      font-size: 1.75rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="faq">
+  <h2 class="faq__title">{{ section.settings.title }}</h2>
+
+  <div class="faq__container">
+    {% for i in (1..6) %}
+      {% assign question_key = 'question_' | append: i %}
+      {% assign answer_key = 'answer_' | append: i %}
+      <div class="faq-item">
+        <div class="faq-item__question" onclick="this.parentElement.classList.toggle('active')">
+          <span>{{ section.settings[question_key] }}</span>
+          <span class="faq-item__toggle">▼</span>
+        </div>
+        <div class="faq-item__answer">
+          {{ section.settings[answer_key] }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-item__question');
+      question.addEventListener('click', function() {
+        item.classList.toggle('active');
+        const toggle = item.querySelector('.faq-item__toggle');
+        const answer = item.querySelector('.faq-item__answer');
+        toggle.classList.toggle('open');
+        answer.classList.toggle('open');
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "question_1",
+      "label": "Question 1",
+      "default": "What is your return policy?"
+    },
+    {
+      "type": "textarea",
+      "id": "answer_1",
+      "label": "Answer 1",
+      "default": "We offer 30-day returns on all unworn items with original tags and packaging intact."
+    },
+    {
+      "type": "text",
+      "id": "question_2",
+      "label": "Question 2",
+      "default": "Do you offer international shipping?"
+    },
+    {
+      "type": "textarea",
+      "id": "answer_2",
+      "label": "Answer 2",
+      "default": "Yes! We ship to countries across Europe. Shipping costs and delivery times vary by location."
+    },
+    {
+      "type": "text",
+      "id": "question_3",
+      "label": "Question 3",
+      "default": "How do I find the right size?"
+    },
+    {
+      "type": "textarea",
+      "id": "answer_3",
+      "label": "Answer 3",
+      "default": "Each product includes a detailed size guide. Measure your pet according to the instructions for the best fit."
+    },
+    {
+      "type": "text",
+      "id": "question_4",
+      "label": "Question 4",
+      "default": "Are your products sustainable?"
+    },
+    {
+      "type": "textarea",
+      "id": "answer_4",
+      "label": "Answer 4",
+      "default": "We use eco-friendly materials and ethical production methods whenever possible."
+    },
+    {
+      "type": "text",
+      "id": "question_5",
+      "label": "Question 5",
+      "default": "How often do you restock items?"
+    },
+    {
+      "type": "textarea",
+      "id": "answer_5",
+      "label": "Answer 5",
+      "default": "We add new items regularly. Sign up for our newsletter to be notified of new arrivals."
+    },
+    {
+      "type": "text",
+      "id": "question_6",
+      "label": "Question 6",
+      "default": "Can I get a bulk discount?"
+    },
+    {
+      "type": "textarea",
+      "id": "answer_6",
+      "label": "Answer 6",
+      "default": "Yes! For bulk orders, please contact our customer service team for a custom quote."
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ"
+    }
+  ]
+}
+{% endschema %}
