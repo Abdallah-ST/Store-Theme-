@@ -1,0 +1,84 @@
+{%- style -%}
+  .featured-categories {
+    padding: 4rem 1.5rem;
+    background-color: #FAF8F4;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .featured-categories__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1F1F1F;
+  }
+
+  .featured-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .category-card {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1;
+  }
+
+  .category-card__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .category-card:hover .category-card__image {
+    transform: scale(1.1);
+  }
+
+  .category-card__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease;
+  }
+
+  .category-card:hover .category-card__overlay {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .category-card__content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .category-card__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .category-card__link {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+  }
+
+  .category-card__link:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 767px) {\n    .featured-categories {\n      padding: 2rem 1.5rem;\n    }\n\n    .featured-categories__title {\n      font-size: 1.75rem;\n      margin-bottom: 2rem;\n    }\n\n    .featured-categories__grid {\n      grid-template-columns: repeat(2, 1fr);\n      gap: 1rem;\n    }\n\n    .category-card__title {\n      font-size: 1.1rem;\n    }\n  }\n{%- endstyle -%}\n\n<section class=\"featured-categories\">\n  <h2 class=\"featured-categories__title\">{{ section.settings.title }}</h2>\n\n  <div class=\"featured-categories__grid\">\n    {% for i in (1..4) %}\n      {% assign key = 'category_' | append: i %}\n      {% assign image_key = 'image_' | append: i %}\n      {% if section.settings[image_key] %}\n        <a href=\"{{ section.settings[key] }}\" class=\"category-card\">\n          <img src=\"{{ section.settings[image_key] | image_url: width: 500 }}\" alt=\"{{ section.settings[key] }}\" class=\"category-card__image\" loading=\"lazy\">\n          <div class=\"category-card__overlay\"></div>\n          <div class=\"category-card__content\">\n            <h3 class=\"category-card__title\">{{ section.settings[key] }}</h3>\n            <span class=\"category-card__link\">Shop Now</span>\n          </div>\n        </a>\n      {% endif %}\n    {% endfor %}\n  </div>\n</section>\n\n{% schema %}\n{\n  \"name\": \"Featured Categories\",\n  \"settings\": [\n    {\n      \"type\": \"text\",\n      \"id\": \"title\",\n      \"label\": \"Section Title\",\n      \"default\": \"Shop by Category\"\n    },\n    {\n      \"type\": \"text\",\n      \"id\": \"category_1\",\n      \"label\": \"Category 1 Title\",\n      \"default\": \"Dog Clothing\"\n    },\n    {\n      \"type\": \"image_picker\",\n      \"id\": \"image_1\",\n      \"label\": \"Category 1 Image\"\n    },\n    {\n      \"type\": \"text\",\n      \"id\": \"category_2\",\n      \"label\": \"Category 2 Title\",\n      \"default\": \"Cat Clothing\"\n    },\n    {\n      \"type\": \"image_picker\",\n      \"id\": \"image_2\",\n      \"label\": \"Category 2 Image\"\n    },\n    {\n      \"type\": \"text\",\n      \"id\": \"category_3\",\n      \"label\": \"Category 3 Title\",\n      \"default\": \"Toys\"\n    },\n    {\n      \"type\": \"image_picker\",\n      \"id\": \"image_3\",\n      \"label\": \"Category 3 Image\"\n    },\n    {\n      \"type\": \"text\",\n      \"id\": \"category_4\",\n      \"label\": \"Category 4 Title\",\n      \"default\": \"Accessories\"\n    },\n    {\n      \"type\": \"image_picker\",\n      \"id\": \"image_4\",\n      \"label\": \"Category 4 Image\"\n    }\n  ],\n  \"presets\": [\n    {\n      \"name\": \"Featured Categories\"\n    }\n  ]\n}\n{% endschema %}
