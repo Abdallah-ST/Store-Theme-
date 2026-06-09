@@ -1,0 +1,148 @@
+{%- style -%}
+  .best-sellers {
+    padding: 4rem 1.5rem;
+    background-color: #FFFFFF;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .best-sellers__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1F1F1F;
+  }
+
+  .best-sellers__subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .best-sellers__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .product-item {
+    transition: all 0.3s ease;
+  }
+
+  .product-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-item__image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1;
+    background-color: #FAF8F4;
+    margin-bottom: 1rem;
+  }
+
+  .product-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .product-item:hover .product-item__image img {
+    transform: scale(1.05);
+  }
+
+  .product-item__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #1F1F1F;
+  }
+
+  .product-item__price {
+    color: #D4AF37;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .product-item__cta {
+    display: inline-block;
+    background-color: #1F1F1F;
+    color: #FFFFFF;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+  }
+
+  .product-item__cta:hover {
+    background-color: #D4AF37;
+    color: #1F1F1F;
+  }
+
+  @media (max-width: 767px) {
+    .best-sellers {
+      padding: 2rem 1.5rem;
+    }
+
+    .best-sellers__title {
+      font-size: 1.75rem;
+    }
+
+    .best-sellers__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="best-sellers">
+  <h2 class="best-sellers__title">{{ section.settings.title }}</h2>
+  <p class="best-sellers__subtitle">{{ section.settings.subtitle }}</p>
+
+  <div class="best-sellers__grid">
+    {% for product in collection.products limit: 8 %}
+      <div class="product-item">
+        <div class="product-item__image">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title }}" loading="lazy">
+          {% endif %}
+        </div>
+        <h3 class="product-item__title">{{ product.title }}</h3>
+        <p class="product-item__price">{{ product.price | money_with_currency }}</p>
+        <a href="{{ product.url }}" class="product-item__cta">View Product</a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Best Sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Discover our most loved pet fashion pieces"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers"
+    }
+  ]
+}
+{% endschema %}
